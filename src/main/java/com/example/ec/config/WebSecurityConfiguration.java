@@ -16,6 +16,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.example.ec.security.FirebaseAuthenticationFilter;
 import com.example.ec.security.Role;
+import com.example.ec.service.CustomerService;
 
 /**
  * セキュリティ設定クラス。
@@ -26,7 +27,7 @@ import com.example.ec.security.Role;
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private FirebaseAuthenticationFilter firebaseAuthenticationFilter;
+    private CustomerService customerService;
 
     @Value(value = "${app.allowedOrigin}")
     private String allowedOrigin;
@@ -39,15 +40,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         // 静的リソースに対するアクセスはセキュリティ設定を無視
         web.ignoring().antMatchers(
-                "/images/**",
-                "/css/**",
-                "/javascript/**",
-                "/webjars/**");
+                "/**/css/**",
+                "/**/js/**");
     }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
 
+        httpSecurity.authorizeRequests().antMatchers("/static/**", "/static/css/**", "/static/js/**").permitAll();
         httpSecurity.authorizeRequests().antMatchers("/api/open/**").permitAll();
         httpSecurity.authorizeRequests().antMatchers("/api/client/**").hasRole(Role.USER);
         httpSecurity.authorizeRequests().antMatchers("/api/admin/**").hasAnyRole(Role.ADMIN);
@@ -58,7 +58,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         if (securityEnable) {
 
             // Firebase認証フィルタを登録
-            httpSecurity.addFilterBefore(firebaseAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+            httpSecurity.addFilterBefore(new FirebaseAuthenticationFilter(customerService),
+                    UsernamePasswordAuthenticationFilter.class);
 
             // CORS
             httpSecurity.cors();

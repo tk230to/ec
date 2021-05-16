@@ -31,6 +31,7 @@ ReactDOM.render(
           <Route exact path={routes.SIGN_IN} component={SignIn} />
           <Route exact path={routes.SIGN_UP} component={SignUp} />
           <PrivateRoute exact path={routes.TOP} component={Top} />
+          <Route component={Top} />
         </Switch>
       </Router>
     </AuthProvider>
