@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ec.repository.CustomerMapper">
+  <select id="findAll" resultMap="customerResult">
+    SELECT
+      customer.id AS id,
+      customer.createdAt As createdAt,
+      customer.createdBy As createdBy,
+      customer.updatedAt As updatedAt,
+      customer.updatedBy As updatedBy,
+      customer.email AS email,
+      customer.name AS name,
+      cartItem.id AS cartItemId,
+      cartItem.quantity AS cartItemQuantity,
+      item.id AS itemId,
+      item.name AS itemName,
+      item.image AS itemImage,
+      item.image_type AS itemImageType,
+      item.price AS itemPrice
+    FROM
+      customer customer
+    LEFT JOIN
+      cart_item cartItem
+    ON
+      customer.id = cartItem.id
+    LEFT JOIN
+      item item
+    ON
+      cartItem.item_id = item.id
+  </select>
+
+  <select id="findById" resultMap="customerResult">
+    SELECT
+      customer.id AS id,
+      customer.created_at As createdAt,
+      customer.created_by As createdBy,
+      customer.updated_at As updatedAt,
+      customer.updated_by As updatedBy,
+      customer.email AS email,
+      customer.name AS name,
+      cartItem.id AS cartItemId,
+      cartItem.quantity AS cartItemQuantity,
+      item.id AS itemId,
+      item.name AS itemName,
+      item.image AS itemImage,
+      item.image_type AS itemImageType,
+      item.price AS itemPrice
+    FROM
+      customer customer
+    LEFT JOIN
+      cart_item cartItem
+    ON
+      customer.id = cartItem.id
+    LEFT JOIN
+      item item
+    ON
+      cartItem.item_id = item.id
+    WHERE
+      customer.id = #{id}
+  </select>
+
+  <select id="findByUid" resultMap="customerResult">
+    SELECT
+      customer.id AS id,
+      customer.created_at As createdAt,
+      customer.created_by As createdBy,
+      customer.updated_at As updatedAt,
+      customer.updated_by As updatedBy,
+      customer.email AS email,
+      customer.name AS name,
+      cartItem.id AS cartItemId,
+      cartItem.quantity AS cartItemQuantity,
+      item.id AS itemId,
+      item.name AS itemName,
+      item.image AS itemImage,
+      item.image_type AS itemImageType,
+      item.price AS itemPrice
+    FROM
+      customer customer
+    LEFT JOIN
+      cart_item cartItem
+    ON
+      customer.id = cartItem.id
+    LEFT JOIN
+      item item
+    ON
+      cartItem.item_id = item.id
+    WHERE
+      customer.uid = #{uid}
+  </select>
+
+  <resultMap type="com.example.ec.model.Customer" id="customerResult">
+    <id column="id" property="id"/>
+    <result column="createdAt" property="createdAt" />
+    <result column="createdBy" property="createdBy" />
+    <result column="updatedAt" property="updatedAt" />
+    <result column="updatedBy" property="updatedBy" />
+    <result column="email" property="email" />
+    <result column="name" property="name" />
+    <collection property="cartItems" ofType="com.example.ec.model.CartItem">
+      <id column="cartItemId" property="id"/>
+      <result column="cartItemQuantity" property="quantity"/>
+      <association property="item" javaType="com.example.ec.model.Item">
+        <id column="itemId" property="id" />
+        <result column="itemName" property="name"/>
+        <result column="itemImage" property="image"/>
+        <result column="itemImageType" property="imageType"/>
+        <result column="itemPrice" property="price"/>
+      </association>
+    </collection>
+  </resultMap>
+
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.ec.repository.ItemMapper">
+  <select id="findAll" resultMap="itemResult">
+    SELECT
+      item.id AS id,
+      item.name AS name,
+      item.image AS image,
+      item.image_type AS imageType,
+      item.price AS price
+    FROM
+      item item
+  </select>
+
+  <select id="findById" resultMap="itemResult">
+    SELECT
+      item.id AS id,
+      item.name AS name,
+      item.image AS image,
+      item.image_type AS imageType,
+      item.price AS price
+    FROM
+      item item
+    WHERE
+      id = #{id}
+  </select>
+
+  <resultMap type="com.example.ec.model.Item" id="itemResult">
+    <id column="id" property="id"/>
+    <result column="name" property="name" />
+    <result column="image" property="image" />
+    <result column="imageType" property="imageType" />
+    <result column="price" property="price" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,39 @@
+spring:
+  datasource:
+
+    # IPアドレス/ポート番号/DB名
+    url: jdbc:mysql://localhost:3306/testdb
+
+    # ユーザ名
+    username: root
+
+    # パスワード
+    password: password
+
+    # JDBCドライバ
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+
+      # @Entityに対応するテーブルが無ければ作成
+      ddl-auto: create-drop
+
+firebase:
+  databaseURL: https://tk-income-360cd.firebaseio.com
+  serviceAccount: C:\Users\tk_23\firebase\firebaseServiceAccountKey.json
+
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+
+app:
+  allowedOrigin: http://localhost:8081
+  security:
+    enable: false
+
+mybatis:
+  config-location: classpath:/mybatis/mybatis-config.xml
+  mapper-locations:
+  - classpath*:/mybatis/mapper/**/*.xml
