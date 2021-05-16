@@ -1,0 +1,169 @@
+{
+  "version": 6,
+  "entities": [
+    {
+      "entity": {
+        "type": "Project",
+        "id": "094e06ca-af39-4777-af54-6821e3e50e50",
+        "name": "customer"
+      },
+      "children": [
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\n  \"id\": 1,\n  \"createdBy\": null,\n  \"lastModifiedBy\": null,\n  \"uid\": \"xxx\",\n  \"email\": \"test@test\",\n  \"name\": \"名前\",\n  \"role\": \"ROLE_USER\"\n}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:8080",
+              "path": "/api/open/customers/1"
+            },
+            "id": "ab389b3a-de56-4ce8-9c54-eee9fc85331d",
+            "name": "findById",
+            "headers": []
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\n  \"id\": 1,\n  \"createdBy\": null,\n  \"lastModifiedBy\": null,\n  \"uid\": \"xxx\",\n  \"email\": \"test@test\",\n  \"name\": \"名前\",\n  \"role\": \"ROLE_USER\",\n  \"cartItems\": [\n    {\n      \"id\": 1,\n      \"item\": {\n        \"id\": 1\n      },\n      \"customer\": {\n        \"id\": 1\n      },\n\t  \"quantity\": 2\n    }\n  ]\n}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:8080",
+              "path": "/api/open/customers"
+            },
+            "id": "69ab2960-9a82-4408-8f36-a65db413ed26",
+            "name": "post",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "entity": {
+        "type": "Project",
+        "id": "937a87b7-e3ce-4725-bec5-fc26382e460e",
+        "name": "item"
+      },
+      "children": [
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.1",
+              "name": "GET"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\n  \"id\": 1,\n  \"name\": \"商品1\",\n  \"image\": [],\n  \"image_type\": \"jpeg\",\n  \"price\": 100\n}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:8080",
+              "path": "/api/open/items/1"
+            },
+            "id": "6dda1687-895a-4476-babd-e36d8737c166",
+            "name": "findById",
+            "headers": []
+          }
+        },
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\n  \"id\": 1,\n  \"name\": \"商品1\",\n  \"image\": [],\n  \"imageType\": \"jpeg\",\n  \"price\": 100\n}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "localhost:8080",
+              "path": "/api/open/items"
+            },
+            "id": "213a388d-a36d-4696-bc96-ad6d26377fe6",
+            "name": "post",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

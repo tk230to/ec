@@ -15,6 +15,10 @@ import lombok.Getter;
 
 /**
  * サービス基底クラス。
+ *
+ * 参照系：MyBatis
+ * 更新系：JPA
+ *
  * @param <T> Entity
  */
 @Service
