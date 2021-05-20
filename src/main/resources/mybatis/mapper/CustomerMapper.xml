@@ -6,10 +6,10 @@
   <select id="findAll" resultMap="customerResult">
     SELECT
       customer.id AS id,
-      customer.createdAt As createdAt,
-      customer.createdBy As createdBy,
-      customer.updatedAt As updatedAt,
-      customer.updatedBy As updatedBy,
+      customer.created_at As createdAt,
+      customer.created_by As createdBy,
+      customer.updated_at As updatedAt,
+      customer.updated_by As updatedBy,
       customer.email AS email,
       customer.name AS name,
       cartItem.id AS cartItemId,
